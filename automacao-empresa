@@ -1,0 +1,42 @@
+from PySimpleGUI import PySimpleGUI as sg
+from datetime import date
+
+#Layout
+sg.theme('Reddit')
+lista1 = [55220, 31853, 57312, 26469, 57304, 25969, 54852, 55964, 53422, 32743, 58580, 55565, 54917, 55310, 58157, 20657]
+lista2 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60]
+lista3 = ['DOBRA', 'FLAT', 'FITTED', 'PILLOW', 'ELASTICO', 'COLCHA', 'FRONHA', 'CORTE']
+lista4 = ['A', 'B']
+lista5 = ['LS', 'LE', 'FR', 'CO', 'TM']
+layout = [
+    [sg.Text('RG'), sg.Combo(key='registro', values=(lista1), size=(12, 1), default_value='None'), sg.Text('Data'), sg.Text(date.today())],
+    [sg.Text('FAMÍLIA'), sg.Combo(key='familia', values=(lista2), size=(12, 1), default_value='None'), sg.Checkbox('DG?')],
+    [sg.Text('DOBRA'), sg.Combo(key='dobra', values=(lista3), size=(12, 1), default_value='None'), sg.Text('Nº'), sg.Combo(key='num1', values=(lista2), size=(12, 1), default_value='None'), sg.Text('TURNO'), sg.Combo(key='turno1', values=(lista4), size=(12, 1), default_value='None')],
+    [sg.Text('MAQUINA'), sg.Combo(key='maquina', values=(lista3), size=(12, 1), default_value='None'), sg.Text('Nº'), sg.Combo(key='num2', values=(lista2), size=(12, 1), default_value='None'), sg.Text('TURNO'), sg.Combo(key='turno2', values=(lista4), size=(12, 1), default_value='None')],
+    [sg.Text('Lote'), sg.Input(key='lote', size=(10, 1), default_text=int(0)),  sg.Text('OFERTA'), sg.Combo(key='oferta', values=(lista5), size=(12, 1), default_value='None')],
+    [sg.Text('Defeito1'), sg.Input(key='defeito1', size=(5, 1), default_text=int(0)), sg.Text('DM1'), sg.Input(key='dm1', size=(5, 1), default_text=int(0)), sg.Text('FM1'), sg.Input(key='fm1', size=(5, 1), default_text=int(0))],
+    [sg.Text('Defeito2'), sg.Input(key='defeito2', size=(5, 1), default_text=int(0)), sg.Text('DM2'), sg.Input(key='dm2', size=(5, 1), default_text=int(0)), sg.Text('FM2'), sg.Input(key='fm2', size=(5, 1), default_text=int(0))],
+    [sg.Text('Defeito3'), sg.Input(key='defeito3', size=(5, 1), default_text=int(0)), sg.Text('DM3'), sg.Input(key='dm3', size=(5, 1), default_text=int(0)), sg.Text('FM3'), sg.Input(key='fm3', size=(5, 1), default_text=int(0))],
+    [sg.Text('Defeito4'), sg.Input(key='defeito4', size=(5, 1), default_text=int(0)), sg.Text('DM4'), sg.Input(key='dm4', size=(5, 1), default_text=int(0)), sg.Text('FM4'), sg.Input(key='fm4', size=(5, 1), default_text=int(0))],
+    [sg.Text('Defeito5'), sg.Input(key='defeito5', size=(5, 1), default_text=int(0)), sg.Text('DM5'), sg.Input(key='dm5', size=(5, 1), default_text=int(0)), sg.Text('FM5'), sg.Input(key='fm5',size=(5, 1), default_text=int(0))],
+    [sg.Text('Q_Rep'), sg.Input(key='q_rep', size=(5, 1), default_text=int(0))],
+    [sg.Button('Enviar')]
+]
+#JANELA
+
+janela = sg.Window('Report NQA', layout)
+
+#LER OS EVENTOS
+
+while True:
+    eventos, valores = janela.read()
+    if eventos == sg.WINDOW_CLOSED:
+        break
+    if eventos == 'Enviar':
+        if valores['registro'] >= 0 and valores['familia'] > 0:
+            if valores['dobra'] == 'DOBRA' or 'FLAT' or 'FRONHA' or 'ELASTICO':
+                if valores['num1'] >= 0 and valores['turno1'] == 'A' or 'B' and valores['maquina'] == 'FLAT' or 'FITTED' or 'CORTE' or 'COLCHA' or 'PILLOW':
+                    if valores['num2'] >= 0 and valores['turno2'] == 'A' or 'B':
+                        if valores['defeito1, defeito2, defeito3, defeito4, defeito5'] >= 0 and valores['dm1, dm2, dm3, dm4, dm5'] >= 0 and valores['fm1, fm2, fm3, fm4, fm5'] >= 0:
+                            if valores['q_rep']  >=0:
+                                print('Dados foram salvos')
